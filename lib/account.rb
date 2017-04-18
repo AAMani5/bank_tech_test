@@ -7,7 +7,7 @@ class Account
     @name = accout_details[:name]
     @balance = 0
     @transactions = []
-    @transaction = accout_details[:transaction] || Struct.new(:amount, :date)
+    @transaction = accout_details[:transaction] || Struct.new(:amount, :date, :balance)
   end
 
   def name
@@ -17,14 +17,14 @@ class Account
   def deposit(amount)
     fail "Please make sure that deposit amount is positive integer" if amount < 0
     @balance += amount
-    new_transaction = transaction.new(amount, DateTime.now)
+    new_transaction = transaction.new(amount, DateTime.now, @balance)
     transactions.push(new_transaction)
   end
 
   def withdraw(amount)
     fail "Please make sure balance amount does not go below zero." if (balance - amount) < 0
     @balance -= amount
-    new_transaction = transaction.new(-amount, DateTime.now)
+    new_transaction = transaction.new(-amount, DateTime.now, @balance)
     transactions.push(new_transaction)
   end
 
