@@ -1,7 +1,7 @@
 class Printer
 
-  def print_statement(transactions)
-    sorted_transactions = transactions.sort{|a,b| b.date <=> a.date}
+  def print_statement(account)
+    sorted_transactions = account.transactions.sort{|a,b| b.date <=> a.date}
     print_header + sorted_transactions.map{|transaction| print_transaction(transaction)}.join("\n") + print_footer
   end
 
