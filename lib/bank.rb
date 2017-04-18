@@ -7,4 +7,8 @@ class Bank
   def create_account(account_details)
   end
 
+  def name
+    @name.to_s
+  end
+
 end
