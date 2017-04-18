@@ -1,3 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rspec', :group => [:development, :test]
+group :test, :development do
+  gem 'rspec'
+  gem 'coveralls', require: false
+end
