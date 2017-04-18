@@ -6,7 +6,7 @@ describe Printer do
   let(:transactions) {[transaction1, transaction2]}
   let(:account) {double :account, :transactions => transactions}
   let(:printer) {Printer.new}
-  let(:output) {"Date\t\t||Transaction Amount\t||Balance\t\n15/04/2017\t\t-5\t\t\t5\n12/03/2017\t\t10\t\t\t10\n_______________________________________________________\n"}
+  let(:output) {"Date\t\t||Credit\t||Debit\t||Balance\t\n15/04/2017\t \t\t5\t5\n12/03/2017\t10\t\t \t10\n_______________________________________________________\n"}
 
   it "prints the statement" do
     expect(printer.print_statement(account)).to eql output
