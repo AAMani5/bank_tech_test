@@ -1,12 +1,17 @@
 require 'bank'
 
 describe Bank do
-
-  let(:bank) {Bank.new(:name => :tsb)}
   let(:account) {double :account}
+  let(:account_class) {double :account_class, :new => account}
+  let(:bank) {Bank.new(:name => :tsb, :account_class => account_class)}
+
 
   it "has a name" do
     expect(bank.name).to eql "tsb"
+  end
+
+  it "has an empty accounts list" do
+    expect(bank.accounts).to be_empty
   end
 
   context "#create_account" do
@@ -15,9 +20,13 @@ describe Bank do
     end
 
     it "returns an account object" do
-      allow(bank).to receive(:create_account).and_return(account)
       my_account = bank.create_account(:name => :ash)
       expect(my_account).to eql(account)
+    end
+
+    it "adds accounts created to the existing list" do
+      bank.create_account(:name => :ash)
+      expect(bank.accounts).to include account
     end
 
   end
