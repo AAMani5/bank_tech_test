@@ -4,6 +4,7 @@ class Bank
   def initialize(bank_details)
     @name = bank_details[:name]
     @account_class = bank_details[:account_class]
+    @printer = bank_details[:printer]
     @accounts = []
   end
 
@@ -17,7 +18,11 @@ class Bank
     @name.to_s
   end
 
+  def print_statement(account)
+    printer.print_statement(account)
+  end
+
   private
-  attr_reader :account_class
+  attr_reader :account_class, :printer
 
 end
