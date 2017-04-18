@@ -19,6 +19,7 @@ class Bank
   end
 
   def print_statement(account)
+    fail "" if !accounts.include?(account)
     printer.print_statement(account)
   end
 

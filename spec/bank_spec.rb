@@ -32,6 +32,7 @@ describe Bank do
   context "#print_statement" do
 
     it "prints the bank statement of an account" do
+      allow(bank).to receive(:accounts).and_return([account])
       allow(printer).to receive(:print_statement)
       expect(printer).to receive(:print_statement).with(account)
       statement = bank.print_statement(account)
