@@ -23,7 +23,7 @@ class Printer
   end
 
   def get_credit_amount(amount)
-    amount > 0 ? amount : " "
+    amount >= 0 ? amount : " "
   end
 
   def get_debit_amount(amount)
