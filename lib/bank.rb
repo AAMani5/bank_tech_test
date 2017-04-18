@@ -9,7 +9,7 @@ class Bank
   end
 
   def create_account(account_details)
-    new_account = account_class.new(account_details[:name])
+    new_account = account_class.new(account_details)
     accounts.push(new_account)
     new_account
   end
