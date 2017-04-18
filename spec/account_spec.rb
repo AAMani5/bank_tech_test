@@ -27,6 +27,11 @@ describe Account do
       expect{account.deposit(deposit_amount)}.to change(account.transactions, :count).by(1)
     end
 
+    it "raises an error if negative amount deposited" do
+      expect{account.deposit(-1)}.to raise_error "Please make sure that deposit amount is positive integer"
+      expect(account.balance).to eql 0
+    end
+
   end
 
   context "withdraw" do
@@ -39,6 +44,11 @@ describe Account do
 
     it "adds a transaction to existing list" do
       expect{account.withdraw(withdraw_amount)}.to change(account.transactions, :count).by(1)
+    end
+
+    it "raises an error if the resulting balance becomes negative" do
+      expect{account.withdraw(11)}.to raise_error "Please make sure balance amount does not go below zero."
+      expect(account.balance).to eql deposit_amount
     end
 
   end
