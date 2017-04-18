@@ -1,6 +1,8 @@
-## Makers Academy Week 10 - Tech Test challange 'Bank'
+[![Build Status](https://travis-ci.org/AAMani5/bank_tech_test.svg?branch=master)](https://travis-ci.org/AAMani5/bank_tech_test)[![Coverage Status](https://coveralls.io/repos/github/AAMani5/bank_tech_test/badge.svg?branch=master)](https://coveralls.io/github/AAMani5/bank_tech_test?branch=master)
 
-## Specification
+## Makers Academy Week 10 - Tech Test challenge 'Bank'
+
+Week 10 was allocated for us to practise tech tests using any Programming language of our choosing.  
 
 ### Requirements
 
@@ -50,7 +52,38 @@ I want to be able to check balance.
 As a Customer,
 So that I can see my transactions
 I want to be able to print my account statement.
+
+  Acceptance criteria: statement should show date, indicate debit/credit and balance after each transaction.
 ```
 
 ### Programming language used
  - Ruby
+
+### Installation, Use and Run tests
+ - clone this repo
+ - move into the folder
+ - to run test : ``` rspec ```
+
+### Feature test and results
+
+```
+lloyds_bank = Bank.new(:name => :lloyds, :account_class => Account, :printer => Printer.new)
+
+my_account = lloyds_bank.create_account(:name => :my)
+
+my_account.deposit(:amount => 1000, :date =>'10/01/2012')
+my_account.deposit(:amount => 2000, :date =>'13/01/2012')
+my_account.withdraw(:amount => 500, :date =>'14/01/2012')
+
+puts lloyds_bank.print_statement(my_account)
+```
+
+```
+Date		||Credit	||Debit	||Balance
+14/01/2012	 		    500	    2500
+13/01/2012	2000		 	      3000
+10/01/2012	1000		 	      1000
+_______________________________________________________
+```
+### Screenshot
+![BankTechTestREPL](./img/REPL.png)
